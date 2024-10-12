@@ -1,0 +1,11 @@
+.title {
+	font-size: 7vw;
+	text-shadow: 15px 15px 15px var(--shadow-color);
+}
+
+.window {
+	top: 15%;
+	left: 10%;
+	height: 70%;
+	width: 80%;
+}
