@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
 import isMobile from '@/app/lib/isMobile';
+import styles from './styles/blob.module.css';
 
 function getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
@@ -99,14 +100,12 @@ function RandomBlob() {
         }
     };
 
-    useEffect(() => {
-        rresetblob();
-    }, []);
+    useEffect(rresetblob, []);
 
     return (
         <div
             id="blob"
-            className="blob"
+            className={styles.blob}
             ref={blobRef}
             onClick={() => {
                 if (isResetting) {
@@ -121,6 +120,53 @@ function RandomBlob() {
         />
     );
 };
+
+function MouseBlob() {
+    const blobRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handlePointerMove = (event: PointerEvent) => {
+            if (blobRef.current) {
+                const { pageX, pageY } = event;
+
+                // Get Initial Momentum
+                const momentumX = pageX + pageX - blobRef.current.offsetLeft;
+                const momentumY = pageY + pageY - blobRef.current.offsetTop;
+
+                // Move to momentum offset position
+                blobRef.current.animate({
+                    left: `${momentumX}px`,
+                    top: `${momentumY}px`
+                }, { duration: 1000, fill: "forwards" });
+
+                // Move/Bounce back to initial mouse after momentum
+                blobRef.current.animate({
+                    left: `${pageX}px`,
+                    top: `${pageY}px`
+                }, { duration: 500, fill: "forwards" });
+
+                // Set Default Initial position for blob / fix safari as the animate don't persist (it doesn't care about fill forwards)
+                blobRef.current.style.left = `${pageX}px`;
+                blobRef.current.style.top = `${pageY}px`;
+            }
+        };
+
+        window.addEventListener('pointermove', handlePointerMove);
+
+        return () => {
+            window.removeEventListener('pointermove', handlePointerMove);
+        };
+    }, []);
+
+    return (
+        <div
+            id="blob"
+            className={styles.sblob}
+            ref={blobRef}
+            style={{ position: 'absolute' }}
+        />
+    );
+}
 
 export default function Blob({ blobtype: initialBlobType }: { blobtype?: string }) {
     const [blobtype, setBlobtype] = useState<string | undefined>(initialBlobType);
@@ -137,5 +183,5 @@ export default function Blob({ blobtype: initialBlobType }: { blobtype?: string 
         return null; // or a loading spinner
     }
 
-    return blobtype === 'random' ? <RandomBlob /> : mouseBlob();
+    return blobtype === 'random' ? <RandomBlob /> : <MouseBlob />;
 }
