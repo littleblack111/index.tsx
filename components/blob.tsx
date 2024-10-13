@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import isMobile from '@/app/lib/isMobile';
 
-// components/RandomBlob.tsx
 function getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -34,13 +33,21 @@ function generateGradient(): string {
     return gradient;
 }
 
-const RandomBlob: React.FC = () => {
+function RandomBlob() {
     const blobRef = useRef<HTMLDivElement>(null);
     const [isResetting, setIsResetting] = useState(false);
-	const [isFirstTime, setIsFirstTime] = useState(true);
-    const [mainInterval, setMainInterval] = useState<NodeJS.Timeout | null>(null);
+    const mainInterval = useRef<NodeJS.Timeout | null>(null);
 
-    const randomPosition = (element: HTMLElement) => {
+    useEffect(() => {
+        mainInterval.current = setTimeout(resetBlob, getRandomInt(7500, 30000));
+        return () => {
+            if (mainInterval.current) {
+                clearTimeout(mainInterval.current);
+            }
+        };
+    }, []);
+
+    function randomPosition(element: HTMLElement) {
         const x = getRandomInt(0, window.innerWidth);
         const y = getRandomInt(0, window.innerHeight);
         element.style.position = 'absolute';
@@ -56,60 +63,44 @@ const RandomBlob: React.FC = () => {
         }
     };
 
-	function rrestblob() {
-		setRandomBlob();
-		blobRef.current!.style.background = generateGradient();
-		randomPosition(blobRef.current!);
-		const fadeInAnimation = blobRef.current!.animate([
-			{ opacity: 0 },
-			{ opacity: 0.4 }
-		], {
-			duration: 3000,
-			iterations: 1,
-			fill: 'forwards'
-		});
+    function rrestblob() {
+        setRandomBlob();
+        blobRef.current!.style.background = generateGradient();
+        randomPosition(blobRef.current!);
+        const fadeInAnimation = blobRef.current!.animate([
+            { opacity: 0 },
+            { opacity: 0.4 }
+        ], {
+            duration: 3000,
+            iterations: 1,
+            fill: 'forwards'
+        });
 
-		fadeInAnimation?.addEventListener('finish', () => {
-			setIsResetting(false);
-		});
-	}
+        fadeInAnimation?.addEventListener('finish', () => {
+            setIsResetting(false);
+        });
+    }
 
-	function resetBlob() {
-		if (blobRef.current) {
-			if (isResetting) {
-				return;
-			}
-			if (!isFirstTime) {
-				blobRef.current?.animate([
-					{ opacity: 0.4 },
-					{ opacity: 0, transform: 'scale(0.8)' }
-				], {
-					duration: 3000,
-					iterations: 1,
-					fill: 'forwards'
-				}).addEventListener('finish', rrestblob);
+    function resetBlob() {
+        if (blobRef.current) {
+            if (isResetting) {
+                return;
+            }
+            blobRef.current?.animate([
+                { opacity: 0.4 },
+                { opacity: 0, transform: 'scale(0.8)' }
+            ], {
+                duration: 3000,
+                iterations: 1,
+                fill: 'forwards'
+            }).addEventListener('finish', rrestblob);
 
-				setIsResetting(true);
-			} else {
-				rrestblob();
-				setIsFirstTime(false);
-			}
-		}
-	};
-
-	function main() {
-		resetBlob();
-        const interval = setTimeout(main, getRandomInt(7500, 30000));
-        setMainInterval(interval);
+            setIsResetting(true);
+        }
     };
 
     useEffect(() => {
-        main();
-        return () => {
-            if (mainInterval) {
-                clearTimeout(mainInterval);
-            }
-        };
+        rrestblob();
     }, []);
 
     return (
@@ -118,14 +109,14 @@ const RandomBlob: React.FC = () => {
             className="blob"
             ref={blobRef}
             onClick={() => {
-				if (isResetting) {
-					return;
-				}
-				setIsResetting(true);
-                if (mainInterval) {
-                    clearTimeout(mainInterval);
+                if (isResetting) {
+                    return;
                 }
-				main();
+                setIsResetting(true);
+                if (mainInterval.current) {
+                    clearTimeout(mainInterval.current);
+                }
+                resetBlob();
             }}
         />
     );
@@ -138,34 +129,14 @@ function mouseBlob() {
 
 export default function Blob({ blobtype: initialBlobType }: { blobtype?: string }) {
     const [blobtype, setBlobtype] = useState<string | undefined>(initialBlobType);
-    const mainIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    useEffect(() => {
-        function main() {
-            if (mainIntervalRef.current) {
-                clearTimeout(mainIntervalRef.current);
-            }
-            mainIntervalRef.current = setTimeout(main, getRandomInt(7500, 30000));
-        }
-
-        main();
-
-        return () => {
-            if (mainIntervalRef.current) {
-                clearTimeout(mainIntervalRef.current);
-            }
-        };
-    }, []);
-
-    useEffect(() => {
-        if (blobtype === undefined) {
-            isMobile().then((isMobile) => {
-                setBlobtype(isMobile ? 'random' : 'mouse');
-            });
-        } else if (blobtype !== 'random' && blobtype !== 'mouse') {
-            throw new Error(`Invalid blob type ${blobtype}`);
-        }
-    }, [blobtype]);
+    if (blobtype === undefined) {
+        isMobile().then((isMobile) => {
+            setBlobtype(isMobile ? 'random' : 'mouse');
+        });
+    } else if (blobtype !== 'random' && blobtype !== 'mouse') {
+        throw new Error(`Invalid blob type ${blobtype}`);
+    }
 
     if (blobtype === undefined) {
         return null; // or a loading spinner
