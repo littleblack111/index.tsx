@@ -1,6 +1,6 @@
 // "use client"
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 // import { Inter, Audiowide, Rock_Salt, Monoton, JetBrains_Mono } from 'next/font/google'
 import "./styles.css";
 import { ThemeProvider } from "@/components/theme-provider"
@@ -32,11 +32,40 @@ import Performance from "@/components/performance";
 export const metadata: Metadata = {
 	title: "littleblack111",
 	description: "littleblack111 is a full stack developer, who uses arch btw",
-	keywords: ["littleblack111", "full stack", "developer", "arch", "btw"],
+	keywords: ["littleblack111", "full stack", "developer", "arch", "linux"],
+	publisher: "littleblack111",
 	authors: [{name: "littleblack111", url: "https://littleblack111.com"}],
 	creator: "littleblack111",
-
+	twitter: {
+		card: 'summary_large_image',
+		title: 'littleblack111',
+		description: 'littleblack111 is a full stack developer, who uses arch btw',
+		creator: '@littleblac59922',
+		images: {
+			url: "https://avatars.githubusercontent.com/u/97672521",
+			alt: "littleblack111"
+		},
+	},
+	openGraph: {
+		title: 'littleblack111',
+		description: 'littleblack111 is a full stack developer, who uses arch btw',
+		url: 'https://littleblack111.com',
+		siteName: "littleblack111's website",
+		images: {
+			url: "https://avatars.githubusercontent.com/u/97672521",
+			alt: "littleblack111"
+		},
+		type: 'website',
+	},
 };
+
+export const viewport: Viewport = {
+	themeColor: [
+		{ media: '(prefers-color-scheme: light)', color: 'white' },
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+	],
+	userScalable: false,
+}
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
 	return (
