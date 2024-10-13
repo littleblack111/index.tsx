@@ -15,7 +15,7 @@ export default function Home() {
 				<Parallax fullPageListening spotGlareEnable={false} lineGlareEnable={false} className={cn("tilt relative top-[15%] left-[10%] h-[70%] w-[80%] bg-transparent flex justify-center items-center z-[999] overflow-visible")}>
 					<div className={cn("relative w-full h-full border border-white rounded-[1em] flex justify-center items-center text-center z-[11] shadow-[0_0_100px_rgba(5,1,13,0.4)]")}>
 						<div className="relative w-full text-center">
-							<h2 className="font-inter text-[2.5vw] " data-parallax-offset="-5">Hello! I'm</h2>
+							<h2 className="font-inter text-[2.5vw] " data-parallax-offset="-5">Hello! I&apos;m</h2>
 							<div className={cn("font-monoton uppercase text-[7vw] transition-all text-shadow-[15px_15px_15px_black]")}>
 								<HackType text="littleblack111" data-parallax-offset="5"/>
 							</div>
