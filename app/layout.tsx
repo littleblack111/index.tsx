@@ -4,6 +4,7 @@ import "./styles.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header";
 import { MonotonFont, RockSaltFont, InterFont, JetBrainsMonoFont } from "./lib/fonts";
+import { Analytics } from "@vercel/analytics/react"
 
 // const programFont = localFont({
 // 	src: "/fonts/LigaJetBrainsMonoNerdFont-Regular.ttf"
@@ -42,6 +43,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					{children}
 				</ThemeProvider>
+				<Analytics />
 			</body>
 			</html>
 		);
