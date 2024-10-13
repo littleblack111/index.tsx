@@ -1,7 +1,6 @@
 "use client"
 
-import "./selector.css";
-import "./index.css";
+import "./styles/index.css";
 import Blob from "@/components/blob";
 import { cn } from "@/lib/utils";
 import HackType from "@/components/hacktype";
@@ -11,7 +10,7 @@ import Parallax from "react-next-parallax";
 export default function Home() {
 	return (
 		<div className={cn("h-screen w-full top-0 left-0 overflow-hidden fixed -z-6")}>
-			<section className={cn("overflow-hidden top-0 left-0 m-0 p-0 w-full h-full bg-center bg-no-repeat bg-cover text-foreground dark:text-dforground bg-background dark:bg-dbackground")}>
+			<section className={cn("top-0 left-0 m-0 p-0 w-full h-full bg-center bg-no-repeat bg-cover text-foreground dark:text-dforground bg-background dark:bg-dbackground")}>
 				<Parallax fullPageListening spotGlareEnable={false} lineGlareEnable={false} className={cn("tilt relative top-[15%] left-[10%] h-[70%] w-[80%] bg-transparent flex justify-center items-center z-[999] overflow-visible")}>
 					<div className={cn("relative w-full h-full border border-white rounded-[1em] flex justify-center items-center text-center z-[11] shadow-[0_0_100px_rgba(5,1,13,0.4)]")}>
 						<div className="relative w-full text-center">
