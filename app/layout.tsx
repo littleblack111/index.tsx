@@ -70,12 +70,14 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
 	return (
 		<html lang="en" style={{ "--blur-size": 0 } as React.CSSProperties}>
 		<body className={`${MonotonFont.variable} ${RockSaltFont.variable} ${InterFont.variable} ${JetBrainsMonoFont.variable}`}>
-			<Header />
-			<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-				{children}
-			</ThemeProvider>
-			<Analytics />
-			<Performance />
+			<div className="animate-reveal">
+				<Header />
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+					{children}
+				</ThemeProvider>
+				<Analytics />
+				<Performance />
+			</div>
 		</body>
 		</html>
 	);

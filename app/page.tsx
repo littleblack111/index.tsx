@@ -9,9 +9,9 @@ import Parallax from "react-next-parallax";
 
 export default function Home() {
 	return (
-		<div className={cn("h-screen w-full top-0 left-0 overflow-hidden fixed -z-6")}>
+		<div className={cn("h-screen w-full top-0 left-0 overflow-hidden fixed -z-6 animate-ZoomInFast")}>
 			<section className={cn("top-0 left-0 m-0 p-0 w-full h-full bg-center bg-no-repeat bg-cover text-foreground dark:text-dforground bg-background dark:bg-dbackground")}>
-				<Parallax fullPageListening spotGlareEnable={false} lineGlareEnable={false} className={cn("tilt relative top-[15%] left-[10%] h-[70%] w-[80%] bg-transparent flex justify-center items-center z-[999] overflow-visible")}>
+				<Parallax fullPageListening spotGlareEnable={false} lineGlareEnable={false} className={cn("tilt relative top-[15%] left-[10%] h-[70%] w-[80%] bg-transparent flex justify-center items-center z-[999] overflow-visible animate-zoomIn")}>
 					<div className={cn("relative w-full h-full border border-white rounded-[1em] flex justify-center items-center text-center z-[11] shadow-[0_0_100px_rgba(5,1,13,0.4)]")}>
 						<div className="relative w-full text-center">
 							<h2 className="font-inter text-[2.5vw] " data-parallax-offset="-5">Hello! I&apos;m</h2>
