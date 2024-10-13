@@ -63,7 +63,7 @@ const config: Config = {
                 monoton: ['var(--font-monoton)'],
                 rocksalt: ['var(--font-rocksalt)'],
 				jetbrains: ['var(--font-jetbrains)'],
-            }
+            },
         }
     },
     plugins: [require("tailwindcss-animate")],
