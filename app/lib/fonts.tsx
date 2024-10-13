@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Inter, Audiowide, Rock_Salt, Monoton, JetBrains_Mono } from 'next/font/google'
+import { Inter, Rock_Salt, Monoton, JetBrains_Mono } from 'next/font/google'
 
 export const InterFont = Inter({
 	variable: "--font-inter",
