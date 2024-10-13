@@ -63,7 +63,7 @@ function RandomBlob() {
         }
     };
 
-    function rrestblob() {
+    function rresetblob() {
         setRandomBlob();
         blobRef.current!.style.background = generateGradient();
         randomPosition(blobRef.current!);
@@ -93,14 +93,14 @@ function RandomBlob() {
                 duration: 3000,
                 iterations: 1,
                 fill: 'forwards'
-            }).addEventListener('finish', rrestblob);
+            }).addEventListener('finish', rresetblob);
 
             setIsResetting(true);
         }
     };
 
     useEffect(() => {
-        rrestblob();
+        rresetblob();
     }, []);
 
     return (
@@ -121,11 +121,6 @@ function RandomBlob() {
         />
     );
 };
-
-function mouseBlob() {
-    // Implement the mouseBlob function
-    return <div>Mouse Blob</div>;
-}
 
 export default function Blob({ blobtype: initialBlobType }: { blobtype?: string }) {
     const [blobtype, setBlobtype] = useState<string | undefined>(initialBlobType);
