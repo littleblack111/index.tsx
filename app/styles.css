@@ -39,30 +39,32 @@
 		--topBarHeight: 5em;
 		--text: #F4E8C1
 		--neon-bg-color: #05010d;
-		--dark-background: 260 86% 3%;
-		--dark-foreground: 0 0% 98%;
-		--dark-card: 0 0% 3.9%;
-		--dark-card-foreground: 0 0% 98%;
-		--dark-popover: 0 0% 3.9%;
-		--dark-popover-foreground: 0 0% 98%;
-		--dark-primary: 0 0% 98%;
-		--dark-primary-foreground: 0 0% 9%;
-		--dark-secondary: 0 0% 14.9%;
-		--dark-secondary-foreground: 0 0% 98%;
-		--dark-muted: 0 0% 14.9%;
-		--dark-muted-foreground: 0 0% 63.9%;
-		--dark-accent: 0 0% 14.9%;
-		--dark-accent-foreground: 0 0% 98%;
-		--dark-destructive: 0 62.8% 30.6%;
-		--dark-destructive-foreground: 0 0% 98%;
-		--dark-border: 0 0% 14.9%;
-		--dark-input: 0 0% 14.9%;
-		--dark-ring: 0 0% 83.1%;
-		--dark-chart-1: 220 70% 50%;
-		--dark-chart-2: 160 60% 45%;
-		--dark-chart-3: 30 80% 55%;
-		--dark-chart-4: 280 65% 60%;
-		--dark-chart-5: 340 75% 55%;
+	}
+	.dark {
+		--background: 260 86% 3%;
+		--foreground: 0 0% 98%;
+		--card: 0 0% 3.9%;
+		--card-foreground: 0 0% 98%;
+		--popover: 0 0% 3.9%;
+		--popover-foreground: 0 0% 98%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 0 0% 9%;
+		--secondary: 0 0% 14.9%;
+		--secondary-foreground: 0 0% 98%;
+		--muted: 0 0% 14.9%;
+		--muted-foreground: 0 0% 63.9%;
+		--accent: 0 0% 14.9%;
+		--accent-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 0 0% 14.9%;
+		--input: 0 0% 14.9%;
+		--ring: 0 0% 83.1%;
+		--chart-1: 220 70% 50%;
+		--chart-2: 160 60% 45%;
+		--chart-3: 30 80% 55%;
+		--chart-4: 280 65% 60%;
+		--chart-5: 340 75% 55%;
 		--shadow-color: black;
 	}
 	* {
@@ -187,7 +189,6 @@ a:hover, Button:hover {
     font-weight: bold;
     text-decoration: underline;
     text-decoration-thickness: 3px;
-    -webkit-text-decoration-line: underline;
     text-decoration-line: underline;
     cursor: pointer;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
