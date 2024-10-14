@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
-import isMobile from '@/app/lib/isMobile';
+import isMobile from '@/lib/isMobile';
 import styles from './styles/blob.module.css';
 
 function getRandomInt(min: number, max: number): number {

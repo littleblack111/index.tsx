@@ -5,7 +5,7 @@ import type { Metadata, Viewport } from "next";
 import "./styles.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header";
-import { MonotonFont, RockSaltFont, InterFont, JetBrainsMonoFont } from "./lib/fonts";
+import { MonotonFont, RockSaltFont, InterFont, JetBrainsMonoFont } from "@/lib/fonts";
 import { Analytics } from "@vercel/analytics/react"
 import Performance from "@/components/performance";
 
@@ -70,7 +70,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
 	return (
 		<html lang="en" style={{ "--blur-size": 0 } as React.CSSProperties}>
 		<body className={`${MonotonFont.variable} ${RockSaltFont.variable} ${InterFont.variable} ${JetBrainsMonoFont.variable}`}>
-			<div className="animate-reveal">
+			<div className="wrapper">
 				<Header />
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					{children}
